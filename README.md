@@ -18,20 +18,20 @@ Hệ thống tìm kiếm và truy xuất video thông minh sử dụng **CLIP em
 
 ---
 
-## 🎯 Tổng quan
+##  Tổng quan
 
 Hệ thống cho phép:
-- ✅ **Tìm kiếm video** bằng mô tả văn bản (text query)
-- ✅ **Tìm kiếm transcript** trong nội dung video
-- ✅ **Auto-extract transcripts** bằng OpenAI Whisper (99 ngôn ngữ)
-- ✅ **Xem preview video** khi hover chuột
-- ✅ **Điều hướng frame-by-frame** chính xác
-- ✅ **Nộp kết quả** lên evaluation server với session ID
-- ✅ **Quản lý metadata** video (FPS, duration, keyframes)
+-  **Tìm kiếm video** bằng mô tả văn bản (text query)
+-  **Tìm kiếm transcript** trong nội dung video
+-  **Auto-extract transcripts** bằng OpenAI Whisper (99 ngôn ngữ)
+-  **Xem preview video** khi hover chuột
+-  **Điều hướng frame-by-frame** chính xác
+-  **Nộp kết quả** lên evaluation server với session ID
+-  **Quản lý metadata** video (FPS, duration, keyframes)
 
 ---
 
-## 🏗️ Kiến trúc hệ thống
+##  Kiến trúc hệ thống
 
 ```
 ┌─────────────────┐
@@ -64,7 +64,7 @@ Hệ thống cho phép:
 
 ---
 
-## 💻 Yêu cầu hệ thống
+##  Yêu cầu hệ thống
 
 ### Phần mềm bắt buộc:
 - **Python 3.8+** 
@@ -73,14 +73,9 @@ Hệ thống cho phép:
 - **8GB RAM** tối thiểu (khuyến nghị 16GB)
 - **10GB dung lượng** trống (cho models và data)
 
-### Hệ điều hành:
-- ✅ Windows 10/11
-- ✅ Linux (Ubuntu 20.04+)
-- ✅ macOS (Intel/Apple Silicon)
-
 ---
 
-## 📦 Cài đặt
+##  Cài đặt
 
 ### Bước 1: Clone repository
 
@@ -134,14 +129,14 @@ python -m scripts.setup_environment --all
 ```
 
 Lệnh này sẽ:
-- ✅ Kiểm tra Python packages
-- ✅ Kiểm tra Docker containers
-- ✅ Tạo các thư mục cần thiết
-- ✅ Download CLIP model weights
+-  Kiểm tra Python packages
+-  Kiểm tra Docker containers
+-  Tạo các thư mục cần thiết
+-  Download CLIP model weights
 
 ---
 
-## ⚙️ Cấu hình
+##  Cấu hình
 
 ### File: `backend/config.py`
 
@@ -192,10 +187,10 @@ tools\run_whisper.bat
 ```
 
 Script này sẽ:
-1. ✅ Extract transcripts từ video bằng Whisper
-2. ✅ Tự động detect ngôn ngữ (hoặc chỉ định cụ thể)
-3. ✅ Lưu transcripts với timestamps chính xác
-4. ✅ Index vào Elasticsearch để search
+1.  Extract transcripts từ video bằng Whisper
+2.  Tự động detect ngôn ngữ (hoặc chỉ định cụ thể)
+3.  Lưu transcripts với timestamps chính xác
+4.  Index vào Elasticsearch để search
 
 **Tùy chọn nâng cao:**
 
@@ -210,7 +205,7 @@ python -m scripts.run_whisper_pipeline --language en
 python -m scripts.extract_transcripts --single-video L01_V001
 ```
 
-📖 **Chi tiết:** Xem [WHISPER_GUIDE.md](WHISPER_GUIDE.md)
+ **Chi tiết:** Xem [WHISPER_GUIDE.md](WHISPER_GUIDE.md)
 
 ### 2. Ingest data (Chỉ chạy 1 lần hoặc khi có video mới)
 
@@ -221,11 +216,11 @@ python -m backend.ingest_data
 ```
 
 **Quá trình này sẽ:**
-1. ✅ Extract keyframes từ video (mỗi X giây)
-2. ✅ Tính CLIP embeddings cho keyframes
-3. ✅ Index embeddings vào Milvus
-4. ✅ Index transcripts (CSV hoặc JSON) vào Elasticsearch
-5. ✅ Lưu metadata (FPS, duration, frame mapping)
+1.  Extract keyframes từ video (mỗi X giây)
+2.  Tính CLIP embeddings cho keyframes
+3.  Index embeddings vào Milvus
+4.  Index transcripts (CSV hoặc JSON) vào Elasticsearch
+5.  Lưu metadata (FPS, duration, frame mapping)
 
 **Thời gian:** ~5-10 phút cho 100 videos (tùy thuộc hardware)
 
@@ -233,7 +228,7 @@ python -m backend.ingest_data
 - **CSV** (legacy): `Start`, `End`, `Text`
 - **JSON** (Whisper): `video_id`, `language`, `segments[]`
 
-📌 **Muốn bổ sung transcript mới mà vẫn giữ dữ liệu cũ?**
+ **Muốn bổ sung transcript mới mà vẫn giữ dữ liệu cũ?**
 
 ```bash
 python -m backend.ingest_data --append-transcripts
@@ -468,7 +463,7 @@ docker compose restart elasticsearch
 
 ---
 
-## 📊 Performance Tips
+##  Performance Tips
 
 ### 1. Tăng tốc ingest
 ```python
