@@ -54,15 +54,20 @@ Hệ thống cho phép:
 ```
 
 **Công nghệ sử dụng:**
-- **Frontend:** HTML5, CSS3, Vanilla JavaScript (ES6 modules)
-- **Backend:** Flask (Python 3.8+)
-- **Vector DB:** Milvus (CLIP embeddings)
-- **Text Search:** Elasticsearch (transcript search)
-- **Video Processing:** OpenCV, FFmpeg
-- **ML Model:** OpenCLIP (ViT-B/32)
-- **Transcript Extraction:** OpenAI Whisper (multi-language ASR)
+- Frontend: HTML5, CSS3, Vanilla JavaScript (ES6 modules)
+- Backend: Flask (Python 3.8+)
+- Vector DB: Milvus (image-text embeddings)
+- Text Search: Elasticsearch (transcript + OCR + captions)
+- Search Strategy: Hybrid search (Milvus + ES), dual-query VN + EN, fusion ranking (max-score / RRF), rerank stage-2 (SigLIP2/VLM), score threshold + full ranked results
+- Full Results Output: Trả về toàn bộ keyframes tương đồng (không giới hạn top-K), hỗ trợ pagination/scroll/cursor + lọc theo min_score để tránh quá tải
+- Translation (VI→EN): NLLB-200 distilled (nhanh) hoặc SeamlessM4T v2 (đa năng)
+- Video Processing: OpenCV, FFmpeg
+- Embedding Model: OpenCLIP ViT-B/32 (baseline) → SigLIP2 g/NaFlex hoặc OpenCLIP ViT-H/14 hoặc jina-clip-v2
+- Captioning (optional): VLM (Qwen2-VL / InternVL2 / LLaVA / BLIP) → index ES
+- Transcript Extraction: OpenAI Whisper (ASR đa ngôn ngữ)
+- OCR: PaddleOCR 3.x (PP-OCRv5 / PaddleOCR-VL)
 
----
+**Note**: Cải tiến model và hệ thống nhưng chưa áp dụng nâng cấp.
 
 ##  Yêu cầu hệ thống
 
